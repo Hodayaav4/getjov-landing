@@ -1,82 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GetJov</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GetJov</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0B0B0F;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #1a1a2e, #0B0B0F);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    .container {
-      text-align: center;
-      animation: fadeIn 1.5s ease;
-    }
+/* רקע glow */
+body::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(254,44,85,0.4), transparent 70%);
+  filter: blur(120px);
+  top: -100px;
+  right: -100px;
+}
 
-    .logo {
-      width: 120px;
-      margin-bottom: 20px;
-    }
+body::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(250,204,21,0.3), transparent 70%);
+  filter: blur(120px);
+  bottom: -100px;
+  left: -100px;
+}
 
-    .phone {
-      width: 280px;
-      margin: 20px 0;
-      animation: float 3s ease-in-out infinite;
-    }
+.container {
+  position: relative;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
 
-    .title {
-      font-size: 32px;
-      font-weight: bold;
-      margin-top: 10px;
-      background: linear-gradient(90deg, #FACC15, #FE2C55);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* זכוכית */
+.card {
+  backdrop-filter: blur(15px);
+  background: rgba(23, 23, 31, 0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
 
-    .subtitle {
-      margin-top: 10px;
-      color: rgba(255,255,255,0.7);
-      font-size: 16px;
-    }
+/* לוגו */
+.logo {
+  width: 110px;
+  margin-bottom: 20px;
+}
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+/* פלאפון */
+.phone {
+  width: 280px;
+  margin: 20px 0;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 25px rgba(254,44,85,0.6));
+}
 
-    @keyframes float {
-      0% { transform: translateY(0px);}
-      50% { transform: translateY(-15px);}
-      100% { transform: translateY(0px);}
-    }
-  </style>
+/* טקסט */
+.title {
+  font-size: 34px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #FACC15, #FE2C55);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+}
+
+/* אנימציות */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes float {
+  0% { transform: translateY(0px);}
+  50% { transform: translateY(-20px);}
+  100% { transform: translateY(0px);}
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
+  <div class="card">
 
-    <!-- לוגו -->
     <img src="logo.png" class="logo">
 
-    <!-- פלאפון -->
     <img src="app1.png" class="phone">
 
-    <!-- טקסט -->
     <div class="title">GetJov</div>
     <div class="subtitle">Coming Soon</div>
 
   </div>
+</div>
 
 </body>
 </html>
