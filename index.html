@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,58 +12,71 @@
       background: #0B0B0F;
       color: white;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       overflow: hidden;
     }
 
-    /* לוגו */
+    .container {
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
     .logo {
-      width: 80px;
+      width: 120px;
       margin-bottom: 20px;
     }
 
-    /* כותרת */
-    h1 {
+    .phone {
+      width: 280px;
+      margin: 20px 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .title {
       font-size: 32px;
-      margin: 10px 0;
+      font-weight: bold;
+      margin-top: 10px;
       background: linear-gradient(90deg, #FACC15, #FE2C55);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* בקרוב */
-    .coming {
+    .subtitle {
       margin-top: 10px;
+      color: rgba(255,255,255,0.7);
       font-size: 16px;
-      opacity: 0.7;
     }
 
-    /* תמונה */
-    .phone {
-      margin-top: 40px;
-      width: 280px;
-      max-width: 90%;
-      display: block;
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px);}
+      50% { transform: translateY(-15px);}
+      100% { transform: translateY(0px);}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- לוגו -->
-  <img src="logo.png" class="logo">
+  <div class="container">
 
-  <!-- שם -->
-  <h1>GetJov</h1>
+    <!-- לוגו -->
+    <img src="logo.png" class="logo">
 
-  <!-- בקרוב -->
-  <div class="coming">Coming Soon</div>
+    <!-- פלאפון -->
+    <img src="app1.png" class="phone">
 
-  <!-- תמונת אפליקציה -->
-  <img src="app1.png" class="phone">
+    <!-- טקסט -->
+    <div class="title">GetJov</div>
+    <div class="subtitle">Coming Soon</div>
+
+  </div>
 
 </body>
 </html>
