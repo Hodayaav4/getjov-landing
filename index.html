@@ -4,601 +4,146 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GetJov</title>
+
+  <!-- FAVICON (לוגו בדפדפן) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=5">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.png?v=5">
+  <link rel="shortcut icon" href="favicon.png?v=5">
+
   <meta name="description" content="GetJov - האפליקציה שתשנה לך את החיים. בקרוב." />
-  <link rel="icon" type="image/png" href="favicon.png?v=3" />
 
   <style>
     :root {
       --bg: #0b0b0f;
       --bg-2: #111118;
-      --card: rgba(20, 20, 28, 0.88);
-      --card-2: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.08);
+      --card: rgba(20, 20, 28, 0.9);
+      --border: rgba(255,255,255,0.08);
       --text: #ffffff;
-      --muted: rgba(255, 255, 255, 0.72);
-      --soft: rgba(255, 255, 255, 0.48);
+      --muted: rgba(255,255,255,0.7);
       --red: #fe2c55;
       --yellow: #facc15;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
-      --radius-xl: 34px;
-      --radius-lg: 24px;
-      --radius-md: 16px;
-      --max: 1180px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at top right, rgba(254, 44, 85, 0.12), transparent 22%),
-        radial-gradient(circle at bottom left, rgba(250, 204, 21, 0.12), transparent 24%),
-        linear-gradient(180deg, #08080c 0%, var(--bg) 45%, var(--bg-2) 100%);
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 28px));
-      margin: 0 auto;
+      background: linear-gradient(180deg,#08080c,#0b0b0f);
     }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 11, 15, 0.72);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      background: rgba(11,11,15,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      padding: 14px;
     }
 
-    .topbar-inner {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand img {
-      height: 42px;
-      width: auto;
-      display: block;
-    }
-
-    .brand-name {
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -0.3px;
+    .topbar img {
+      height: 40px;
     }
 
     .hero {
-      padding: 56px 0 32px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 36px;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      color: var(--yellow);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
+      text-align: center;
+      padding: 60px 20px 20px;
     }
 
     .hero h1 {
-      margin: 18px 0 16px;
-      font-size: clamp(38px, 7vw, 74px);
-      line-height: 0.96;
-      letter-spacing: -1.8px;
+      font-size: 42px;
+      line-height: 1.1;
     }
 
-    .gradient-text {
-      background: linear-gradient(90deg, #fff2b2 0%, var(--yellow) 30%, #ff9ab0 72%, var(--red) 100%);
+    .gradient {
+      background: linear-gradient(90deg,#FACC15,#FE2C55);
       -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero p {
-      margin: 0;
-      max-width: 610px;
       color: var(--muted);
-      font-size: 18px;
-      line-height: 1.9;
+      max-width: 500px;
+      margin: 20px auto;
+      line-height: 1.6;
     }
 
-    .hero-actions {
-      margin-top: 28px;
+    .phone {
+      width: 260px;
+      margin-top: 30px;
+      border-radius: 20px;
+    }
+
+    .features {
+      padding: 40px 20px;
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-      border: 0;
-      cursor: pointer;
-      transition: 0.2s ease;
-      font-weight: 900;
-      display: inline-flex;
-      align-items: center;
+      gap: 15px;
       justify-content: center;
-    }
-
-    .btn-primary:hover,
-    .btn-secondary:hover,
-    .feature:hover,
-    .info-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      padding: 15px 24px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--yellow), var(--red));
-      color: #0b0b0f;
-      box-shadow: 0 16px 34px rgba(254, 44, 85, 0.22);
-    }
-
-    .btn-secondary {
-      padding: 15px 24px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .hero-meta {
-      margin-top: 22px;
-      display: flex;
-      gap: 18px;
       flex-wrap: wrap;
-      color: var(--soft);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .visual-wrap {
-      position: relative;
-      min-height: 620px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .glow {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(40px);
-      pointer-events: none;
-      opacity: 0.35;
-    }
-
-    .glow.one {
-      width: 220px;
-      height: 220px;
-      top: 30px;
-      right: 10px;
-      background: rgba(254, 44, 85, 0.28);
-    }
-
-    .glow.two {
-      width: 240px;
-      height: 240px;
-      bottom: 50px;
-      left: 10px;
-      background: rgba(250, 204, 21, 0.22);
-    }
-
-    .phone-shell {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 370px;
-      padding: 14px;
-      border-radius: 34px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 25px 60px rgba(0,0,0,0.46);
-    }
-
-    .phone-image {
-      display: block;
-      width: 100%;
-      border-radius: 26px;
-      background: #0d0d12;
-    }
-
-    .section {
-      padding: 42px 0;
-    }
-
-    .section-head {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 28px;
-    }
-
-    .section-mini {
-      color: var(--yellow);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .section-head h2 {
-      margin: 12px 0 10px;
-      font-size: clamp(30px, 5vw, 50px);
-      line-height: 1.05;
-      letter-spacing: -1.3px;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .feature,
-    .info-card,
-    .cta-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
     }
 
     .feature {
-      border-radius: 24px;
-      padding: 22px;
-      transition: 0.2s ease;
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      color: var(--yellow);
-      margin-bottom: 14px;
-      background: linear-gradient(135deg, rgba(250,204,21,0.18), rgba(254,44,85,0.18));
-    }
-
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 19px;
-    }
-
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 14px;
-    }
-
-    .info-grid {
-      margin-top: 8px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .info-card {
-      border-radius: 26px;
-      padding: 24px;
-      background:
-        linear-gradient(180deg, rgba(24,24,34,0.92), rgba(16,16,22,0.88));
-    }
-
-    .info-card h3 {
-      margin: 0 0 12px;
-      font-size: 24px;
-      letter-spacing: -0.5px;
-    }
-
-    .info-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.9;
-      font-size: 15px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      width: 250px;
     }
 
     .cta {
-      padding: 46px 0 78px;
-    }
-
-    .cta-card {
-      border-radius: 34px;
-      padding: 30px 24px;
       text-align: center;
-      background:
-        linear-gradient(135deg, rgba(250,204,21,0.13), rgba(254,44,85,0.13), rgba(255,255,255,0.03));
+      padding: 40px 20px;
     }
 
-    .cta-card h2 {
-      margin: 0 0 12px;
-      font-size: clamp(30px, 5vw, 52px);
-      line-height: 1;
-      letter-spacing: -1.2px;
-    }
-
-    .cta-card p {
-      margin: 0 auto;
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.9;
-    }
-
-    .cta-actions {
-      margin-top: 24px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
+    .btn {
+      background: linear-gradient(90deg,#FACC15,#FE2C55);
+      border: none;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .footer {
-      padding: 0 0 30px;
-    }
-
-    .footer-inner {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 18px;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: var(--soft);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .features-grid,
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 36px;
-      }
-
-      .hero-copy {
-        text-align: center;
-      }
-
-      .hero p {
-        margin-right: auto;
-        margin-left: auto;
-      }
-
-      .hero-actions,
-      .hero-meta {
-        justify-content: center;
-      }
-
-      .visual-wrap {
-        min-height: auto;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .container {
-        width: calc(100% - 20px);
-      }
-
-      .brand-name {
-        font-size: 18px;
-      }
-
-      .brand img {
-        height: 38px;
-      }
-
-      .hero h1 {
-        font-size: 42px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        width: 100%;
-      }
-
-      .phone-shell {
-        max-width: 300px;
-        padding: 10px;
-      }
-
-      .phone-image {
-        border-radius: 22px;
-      }
-
-      .feature,
-      .info-card,
-      .cta-card {
-        border-radius: 22px;
-      }
+      text-align: center;
+      padding: 20px;
+      color: rgba(255,255,255,0.4);
     }
   </style>
 </head>
+
 <body>
 
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <div class="brand">
-        <img src="logo.png?v=3" alt="GetJov Logo">
-        <div class="brand-name">GetJov</div>
-      </div>
-    </div>
-  </header>
+  <div class="topbar">
+    <img src="logo.png?v=5">
+  </div>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="badge">Coming Soon</div>
+  <section class="hero">
+    <h1>
+      האפליקציה<br>
+      <span class="gradient">שתשנה לך את החיים</span>
+    </h1>
 
-          <h1>
-            <span>האפליקציה</span>
-            <br />
-            <span class="gradient-text">שתשנה לך את החיים</span>
-          </h1>
+    <p>
+      משהו גדול בדרך. חוויה חדשה, חכמה ומדויקת יותר.
+    </p>
 
-          <p>
-            חוויית מוצר חדשה, חכמה ויוקרתית בדרך.
-            משהו גדול נבנה עכשיו — מדויק יותר, נקי יותר, ומהיר יותר.
-          </p>
+    <img src="app1.png" class="phone">
+  </section>
 
-          <div class="hero-actions">
-            <a href="#discover" class="btn-primary">לגלות עוד</a>
-            <a href="#soon" class="btn-secondary">בקרוב</a>
-          </div>
+  <section class="features">
+    <div class="feature">⚡ חוויה מהירה וחדשנית</div>
+    <div class="feature">🎯 ממשק חכם ופשוט</div>
+    <div class="feature">🚀 מוצר חדש בדרך</div>
+  </section>
 
-          <div class="hero-meta">
-            <span>עיצוב יוקרתי</span>
-            <span>חוויה חכמה</span>
-            <span>מוצר חדש בדרך</span>
-          </div>
-        </div>
+  <section class="cta">
+    <button class="btn">בקרוב</button>
+  </section>
 
-        <div class="visual-wrap">
-          <div class="glow one"></div>
-          <div class="glow two"></div>
-
-          <div class="phone-shell">
-            <img src="app1.png?v=3" alt="GetJov Preview" class="phone-image">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="discover">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-mini">Why GetJov</div>
-          <h2>נבנתה לחשוב אחרת</h2>
-          <p>
-            בלי לחשוף יותר מדי — אפשר כבר לראות שמדובר במשהו חד, מודרני ומדויק,
-            שמיועד לתת חוויה אחרת לגמרי.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <div class="feature">
-            <div class="feature-icon">01</div>
-            <h3>חוויה יוקרתית</h3>
-            <p>
-              עיצוב חזק, ברור ואלגנטי שמרגיש כמו מוצר ברמה גבוהה כבר מהמבט הראשון.
-            </p>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">02</div>
-            <h3>פשטות חכמה</h3>
-            <p>
-              ממשק נקי, מינימליסטי וקליל, שמסתיר מאחוריו חשיבה עמוקה וחוויית שימוש מדויקת.
-            </p>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">03</div>
-            <h3>משהו חדש בדרך</h3>
-            <p>
-              זה רק טעימה ממה שמתבשל. המוצר המלא עוד בדרך, וההתחלה כבר נראית מבטיחה.
-            </p>
-          </div>
-        </div>
-
-        <div class="info-grid">
-          <div class="info-card">
-            <h3>ממוקד בעתיד</h3>
-            <p>
-              המותג GetJov נבנה מתוך מחשבה על הדור הבא של חוויית המוצר — פחות רעש,
-              יותר דיוק, יותר נוכחות.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <h3>מתחילים נכון</h3>
-            <p>
-              כרגע זה שלב ההשקה הראשוני. בדיוק הזמן הנכון להכיר את השם, את השפה,
-              ואת מה שעומד להגיע.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="soon">
-      <div class="container">
-        <div class="cta-card">
-          <h2>GetJov מגיעה בקרוב</h2>
-          <p>
-            אנחנו עדיין לא חושפים הכל, אבל דבר אחד בטוח — זה הולך להיות משהו שאי אפשר להתעלם ממנו.
-          </p>
-
-          <div class="cta-actions">
-            <a href="https://getjov.com" class="btn-primary">GetJov</a>
-            <a href="#top" class="btn-secondary">חזרה למעלה</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>© 2026 GetJov</span>
-      <span>getjov.com</span>
-    </div>
-  </footer>
+  <div class="footer">
+    GetJov © 2026
+  </div>
 
 </body>
 </html>
